@@ -1,0 +1,188 @@
+$background-color: #f6f6f6;
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body, html{
+    font-size: .24rem;
+    padding-bottom: .72rem;
+    font-family: -apple-system, Helvetica, sans-serif;
+    background-color: $background-color;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+// 导航栏
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-content: space-between;
+    flex-wrap: wrap;
+
+    .nav-box {
+        width: 20%;
+        height: 1.07rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+
+        .pic {
+            width: 0.576rem;
+            margin-top: 0.144rem;
+        }
+
+        .text {
+            font-size: 0.173rem;
+            color: #666;
+            margin-top: 0.087rem;
+        }
+    }
+}
+
+// 商品栏
+.goods-menu {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0.072rem;
+
+    .goods-item {
+        width: 50%;
+        padding: 0.072rem;
+        box-sizing: border-box;
+
+        .goods {
+            display: block;
+            // width: 100%;
+            background-color: #fff;
+            border-radius: 0.2rem;
+            overflow: hidden;
+            box-sizing: border-box;
+
+            .goods-pic {
+                width: 100%;
+                margin-bottom: 0.072rem;
+            }
+
+            .goods-info {
+                padding: 0 0.144rem 0.144rem;
+                width: 100%;
+                box-sizing: border-box;
+
+                .goods-title {
+                    display: block;
+                    width: 100%;
+                    height: 0.605rem;
+                    line-height: 0.3025rem;
+                    font-size: 0.202rem;
+                    color: #434343;
+                    word-break: break-all;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    display: -webkit-box;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 2;
+                    box-sizing: border-box;
+                }
+
+                .goods-tag {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 1.11rem;
+                    height: 0.26rem;
+                    background: rgba(255, 32, 120, 0.07);
+                    border-radius: 0.05rem;
+                    padding: 0 0.029rem;
+                    box-sizing: border-box;
+                    
+
+                    .lowest-price {
+                        width: 0.173rem;
+                        height: 0.173rem;
+                        margin-top: 0.02rem;
+                    }
+
+                    .text {
+                        font-size: 0.18rem;
+                        color: #ff2078;
+                        margin-left: 0.029rem;
+                    }
+                }
+
+                .goods-row {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    height: 0.432rem;
+
+                    .goods-price {
+                        color: #ff4142;
+                        // font-size: 0;
+
+                        // .text {
+                        //     font-size: 0.2rem;
+                        // }
+
+                        .price {
+                            font-size: 0.3rem;
+                        }
+                    }
+
+                    img {
+                        width: 0.35remm;
+                        height: 0.2rem;
+                        margin: 0 0.07rem 0 0.08rem;
+                    }
+                }
+
+                .goods-row-bottom {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .comment {
+                        font-size: 0.18rem;
+                        color: #999;
+                        text-align: center;
+                    }
+
+                    .similar {
+                        width: 0.72rem;
+                        height: 0.288rem;
+                        line-height: 0.288rem;
+                        text-align: center;
+                        font-size: 0.16rem;
+                        color: #262626;
+                        background-color: #f2f2f2;
+                        border-radius: 0.2rem;
+                    }
+                }
+            }
+        }
+    }
+}
+
+// 底部栏
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    background-color: #fff;
+
+    .pic {
+        width: 20%;
+        text-align: center;
+
+        img {
+            width: 0.864rem;
+        }
+    }
+}
