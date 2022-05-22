@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        form {
+            width: 450px;
+            height: 550px;
+            margin:  100px auto;
+            padding: 40px 45px;
+            border-radius: 20px;
+            box-shadow: 0 0 10px 10px rgb(240, 240, 240);
+            box-sizing: border-box;
+        }
+        input {
+            width: 356px;
+            height: 60px;
+            padding: 15px;
+            border: none;
+            border-radius: 10px;
+            outline: none;
+            background-color: rgb(255, 239, 241);
+            box-sizing: border-box;
+        }
+        input::placeholder {
+            color: #d85454;
+            font-size: 18px;
+        }
+        input:focus {
+            outline: 1px solid #d85454;
+            box-shadow: 0 0 4px 4px rgba(255, 226, 226, 0.6);
+        }
+        input:focus::placeholder {
+            opacity: 0;
+        }
+        #password {
+            margin-top: 20px;
+        }
+        p {
+            width: 356px;
+            height: 20px;
+            margin-top: 10px;
+            font-size: 12px;
+            color: #f04645;
+        }
+        .btn {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .btn-signup,
+        .btn-login {
+            width: 80px;
+            height: 30px;
+            line-height: 30px;
+            text-align: center;
+            color: #fff;
+            font-size: 16px;
+            background-color: #ea8686;
+            border: none;
+            border-radius: 10px;
+        }
+        .btn-signup {
+            background-color: rgb(206, 210, 126);
+        }
+        .hint-disappear {
+            visibility: hidden;
+        }
+    </style>
+</head>
+<body>
+    <form action="">
+        <div class="box">
+            <input type="text" name="username" id="username" placeholder="邮箱/手机号码">
+            <p class="hint-1">请输入账号</p>
+        </div>
+        <div class="box">
+            <input type="password" name="password" id="password" placeholder="密码">
+            <p class="hint-2">请输入登录密码</p>
+        </div>
+        <div class="btn">
+            <span class="btn-signup">注册</span>
+            <span class="btn-login">登录</span>
+        </div>
+            
+    </form>
+    
+    <script>
+        let p1 = document.getElementsByClassName('hint-1')[0];
+        let p2 = document.getElementsByClassName('hint-2')[0];
+        let signup = document.getElementsByClassName('btn-signup')[0];
+        let login = document.getElementsByClassName('btn-login')[0];
+        let username = document.getElementById('username');
+        let password = document.getElementById('password');
+        username.onkeyup = function() {
+            if(!!username.value) {
+                p1.classList.add('hint-disappear');
+            } else{
+                p1.classList.remove('hint-disappear');
+            }
+        };
+        password.onkeyup = function() {
+            if(!!password.value) {
+                p2.classList.add('hint-disappear');
+            } else{
+                p2.classList.remove('hint-disappear');
+            }
+        };
+
+        login.onclick = function() {
+            let username_val = username.value;
+            let password_val = password.value;
+            if(!username_val || !password_val) {
+                return;
+            } 
+            let urlStr = '?username=' + username_val + '&password=' + password_val;
+            fetch('http://127.0.0.1:8002/login' + urlStr).then(function(res) {
+                return res.json();
+            }).then(function(data) {
+                if(data.code == 200) {
+                    // username.value = '';
+                    // password.value = '';
+                    p1.classList.remove('hint-disappear');
+                    p1.style.color = 'green';
+                    p1.innerHTML = data.msg;
+                } else {
+                    p1.classList.remove('hint-disappear');
+                    p2.classList.remove('hint-disappear');
+                    p1.innerHTML = data.msg;
+                    p2.innerHTML = data.msg;
+                }
+            })
+        }
+        signup.onclick = function() {
+            let username_val = username.value;
+            let password_val = password.value;
+            if(!username_val || !password_val) {
+                return;
+            } 
+            fetch('http://127.0.0.1:8002/signup', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: 'username='+ username_val +'&password=' + password_val
+            }).then(function(res) {
+                return res.json();
+            }).then(function(data) {
+                if(data.code == 200) {
+                    // username.value = '';
+                    // password.value = '';
+                    p1.classList.remove('hint-disappear');
+                    p1.style.color = 'green';
+                    p1.innerHTML = data.msg;
+                } else {
+                    p1.classList.remove('hint-disappear');
+                    p1.innerHTML = data.msg;
+                }
+            });
+        }
+        
+    </script>
+</body>
+</html>
